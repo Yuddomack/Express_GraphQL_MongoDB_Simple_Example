@@ -16,7 +16,9 @@ var schema = buildSchema(`
 
 var root = {
   hello: () => 'Hello world!',
-  persons: () => {
+  persons: (args, context, info) => {
+    console.log(context);
+
     return [
       {name:"kim", age: 20},
       {name:"lee", age: 30},
@@ -26,9 +28,12 @@ var root = {
 };
 
 var app = express();
+const session = {id: "1001", expires: 20000};
+
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
+  context: session,
   graphiql: true,
 }));
 app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'));
