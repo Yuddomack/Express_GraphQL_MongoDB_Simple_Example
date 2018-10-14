@@ -1,0 +1,26 @@
+{
+  "name": "express_graphql_mongodb_simple_example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yuddomack/Express_GraphQL_MongoDB_Simple_Example.git"
+  },
+  "author": "yuddomack <darr880406@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yuddomack/Express_GraphQL_MongoDB_Simple_Example/issues"
+  },
+  "homepage": "https://github.com/Yuddomack/Express_GraphQL_MongoDB_Simple_Example#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "express-graphql": "^0.6.12",
+    "express-session": "^1.15.6",
+    "graphql": "^14.0.2"
+  }
+}
