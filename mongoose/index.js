@@ -1,4 +1,4 @@
-module.exports = function(){
+module.exports = (function(){
   const mongoose = require('mongoose');
   const URI = process.env.MONGO_URI || "localhost"; // your mongodb uri
   const DB = process.env.MONGO_DB || "mongoose"; // your db
@@ -9,7 +9,7 @@ module.exports = function(){
       // CONNECTED TO MONGODB SERVER
       console.log("Connected to mongod server");
   });
-  
+
   mongoose.connect(`mongodb://${URI}/${DB}`, { useNewUrlParser: true });
 
   const schema = {};
@@ -23,4 +23,4 @@ module.exports = function(){
   }
 
   return model;
-};
+})();
