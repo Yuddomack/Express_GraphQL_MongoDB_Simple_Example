@@ -6,4 +6,6 @@ const kim = new model.User({
   pwd: "qwer",
 });
 
-kim.save().then(res => console.log(res));
+//kim.save().then(res => console.log(res));
+
+model.User.find().then(res => console.log(res));
