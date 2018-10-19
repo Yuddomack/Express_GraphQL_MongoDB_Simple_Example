@@ -10,8 +10,8 @@ module.exports = (function(){
   async function joinUser(email, pwd){
     if(await isExistEmail(id)) throw "email is existed";
 
-    const user = new model.User({email: email, pwd: pwd});
-    const result = await user.save();
+    const newUser = new model.User({email: email, pwd: pwd});
+    const result = await newUser.save();
 
     return (result._id) ? {code: 200} : {code: 500};
   }
