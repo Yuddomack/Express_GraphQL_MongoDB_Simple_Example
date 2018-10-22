@@ -1,3 +1,3 @@
 module.exports = {
-  join: require('./join'),
+  cm: require('./customer_manage'),
 };
