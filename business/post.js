@@ -3,7 +3,9 @@ module.exports = (function(){
 
   async function createPost({title, content, author}){
     const newPost = new model.Post({title: title, content: content, author: author});
-    return await newPost.save();
+
+    const result = await newPost.save();
+    return await result.populate('author').execPopulate();
   }
 
   async function getAllPosts(){
