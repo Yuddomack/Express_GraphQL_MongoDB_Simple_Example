@@ -2,15 +2,16 @@ module.exports = (function(){
   const model = require('../mongoose/model');
 
   // https://mongoosejs.com/docs/guide.html#id
-  async function isExistEmail(email){
-    const user = await model.User.findOne({email: email});
-    //console.log(user._id.toString());
+  async function getUser(email){
+    return await model.User.findOne({email: email}); // 없을땐 null
+  }
 
-    return user; // 없을땐 null
+  async function getAllUsers(){
+    return await model.User.find();
   }
 
   async function joinUser(email, pwd){
-    if(await isExistEmail(email)) throw "email is existed";
+    if(await getUser(email)) throw "email is existed";
 
     const newUser = new model.User({email: email, pwd: pwd});
     const result = await newUser.save();
@@ -19,7 +20,9 @@ module.exports = (function(){
   }
 
   return {
-    joinUser: joinUser
+    getUser: getUser,
+    getAllUsers: getAllUsers,
+    joinUser: joinUser,
   };
-}
-)();
+
+})();
