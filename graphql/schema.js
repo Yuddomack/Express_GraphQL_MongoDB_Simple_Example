@@ -38,7 +38,7 @@ var schema = buildSchema(`
   }
 `);
 // 맞춤 스칼라 타입 지정은 어떻게?
-var root = {
+var resolver = {
   users: async (args, context, info) => {
     return await dao.cm.getAllUsers();
   },
@@ -60,4 +60,4 @@ var root = {
   },
 };
 
-module.exports = {schema: schema, root: root};
+module.exports = {schema: schema, root: resolver};
