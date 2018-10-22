@@ -12,7 +12,8 @@ var { buildSchema } = require('graphql');
 // }
 var schema = buildSchema(`
   type Query {
-    hello: String
+    users: [User]
+    user(email: String!): User
   }
 
   type Mutation {
@@ -28,13 +29,18 @@ var schema = buildSchema(`
 `);
 // 맞춤 스칼라 타입 지정은 어떻게?
 var root = {
-  hello: () => 'Hello world!',
+  users: async (args, context, info) => {
+    return await dao.cm.getAllUsers();
+  },
+  user: async (args, context, info) => {
+    const {email} = args;
+
+    return await dao.cm.getUser(email);
+  },
   createUser: async (args, context, info) => {
     const {email, pwd} = args;
-    console.log(email);
-    console.log(pwd);
 
-    return await dao.join.joinUser(email, pwd);
+    return await dao.cm.joinUser(email, pwd);
   }
 };
 
