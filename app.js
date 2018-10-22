@@ -4,7 +4,7 @@ var { buildSchema } = require('graphql');
 
 var app = express();
 
-const {schema, resolver: root} = require('./graphql/schema');
+const {schema, root} = require('./graphql/schema');
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,
