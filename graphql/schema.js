@@ -60,4 +60,4 @@ var root = {
   },
 };
 
-module.exports = {schema: schema, resolver: root};
+module.exports = {schema: schema, root: root};
