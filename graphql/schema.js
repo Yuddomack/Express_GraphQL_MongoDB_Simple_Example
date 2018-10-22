@@ -14,16 +14,26 @@ var schema = buildSchema(`
   type Query {
     users: [User]
     user(email: String!): User
+    posts: [Post]
   }
 
   type Mutation {
     createUser(email: String!, pwd: String!): User
+    createPost(title: String!, content: String!, author: String!): Post
   }
 
   type User{
     id: String
     email: String
     pwd: String
+    c_date: String
+  }
+
+  type Post{
+    id: String
+    title: String,
+    content: String,
+    author: User
     c_date: String
   }
 `);
@@ -41,7 +51,13 @@ var root = {
     const {email, pwd} = args;
 
     return await dao.cm.joinUser(email, pwd);
-  }
+  },
+  posts: async (args, context, info) => {
+    return await dao.post.getAllPosts();
+  },
+  createPost: async (args, context, info) => {
+    return await dao.post.createPost(args);
+  },
 };
 
 module.exports = {schema: schema, resolver: root};
